@@ -45,15 +45,16 @@ export const LoginPage = () => {
   const onLoginSubmit: SubmitHandler<ILoginForm> = (data) => {
     
     const savedEmail = localStorage.getItem("userEmail");
-    const savedPassword = localStorage.getItem("userPassword");
+const savedPassword = localStorage.getItem("userPassword");
 
-    if (data.userEmail === savedEmail && data.userPassword === savedPassword) {
-      console.log("Успешный вход");
-      navigate("/main-page"); 
-    } else {
-      console.log("Неверный email или пароль");
-      alert("Неверный email или пароль"); 
-    }
+if (savedEmail && savedPassword && data.userEmail === savedEmail && data.userPassword === savedPassword) {
+  console.log("Успешный вход");
+  navigate("/main-page");
+} else {
+  console.log("Неверный email или пароль");
+  alert("Неверный email или пароль");
+}
+
   };
 
   return (

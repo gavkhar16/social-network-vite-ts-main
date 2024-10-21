@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <header className="Header">
       <div className="Header__logo">
-        <a href="#">
+        <a href="javascript:void(0)">
           <svg
             id="tehnikum-logo"
             viewBox="0 0 143 23"

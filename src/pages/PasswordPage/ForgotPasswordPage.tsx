@@ -15,9 +15,13 @@ interface IForgotPasswordForm {
 
 const passwordSchema = yup.object({
   userPassword: yup
-    .string()
-    .required("Обязательное поле")
-    .min(4, "Пароль должен содержать не менее 4 символов"),
+  .string()
+  .required("Обязательное поле")
+  .min(8, "Пароль должен содержать не менее 8 символов")
+  .matches(/[A-Z]/, "Пароль должен содержать хотя бы одну заглавную букву")
+  .matches(/\d/, "Пароль должен содержать хотя бы одну цифру")
+  .matches(/[@$!%*?&]/, "Пароль должен содержать хотя бы один специальный символ"),
+
   confirmPassword: yup
     .string()
     .required("Обязательное поле")

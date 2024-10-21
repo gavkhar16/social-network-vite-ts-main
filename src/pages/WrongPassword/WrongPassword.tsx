@@ -20,9 +20,10 @@ export const WrongPassword = () => {
       navigate("/code-enter");
     }
   };
-
   
-  const containsDigit = /\d/.test(phoneNumber);
+  const phoneRegExp = /^\+?[0-9]{10,15}$/;
+  const containsDigit = phoneRegExp.test(phoneNumber);
+  
 
   return (
     <Container>

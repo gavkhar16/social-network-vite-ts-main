@@ -10,7 +10,10 @@ export const Linktext = ({ regularText, linkText, onLinkClick }: TLinkText) => {
   return (
     <StyledLinktext>
       <span>
-        {regularText} <a onClick={onLinkClick}>{linkText}</a>
+        {regularText}<a onClick={onLinkClick} role="button" tabIndex={0}>
+  {linkText}
+</a>
+
       </span>
     </StyledLinktext>
   );
