@@ -1,11 +1,10 @@
-type TUserElem = {
+type TPostUserElem = {
     userElemImg: string;
     mainText: string;
-    secondaryText: string;
-    badgeCount?: number;
+    secondaryText?: string;
 }
 
-export const UserElem = ({userElemImg, mainText, secondaryText, badgeCount}:TUserElem) => {
+export const PostUserElem = ({userElemImg, mainText, secondaryText}:TPostUserElem) => {
     return (
         <div className="UserElem">
             <img src={`${userElemImg}`} alt="User" />
@@ -13,7 +12,6 @@ export const UserElem = ({userElemImg, mainText, secondaryText, badgeCount}:TUse
               <p className="main__text">{mainText}</p>
               <p className="secondary__text">{secondaryText}</p>
             </div>
-            <span className="Badge">{badgeCount}</span>
           </div>
     )
 }
