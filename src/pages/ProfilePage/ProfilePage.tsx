@@ -1,5 +1,5 @@
-import { Header } from "../../components/UI/Header/Header";
-import { Container } from "../../components/UI/UI/Container/container.style";
+import { Header } from "../../components/Header/Header";
+import { Container } from "../../components/UI/Container/container.style";
 import "./ProfilePage.scss";
 
 export const ProfilePage = () => {

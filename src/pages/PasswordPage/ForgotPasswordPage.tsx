@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { Heading } from "../../components/UI/Header/Heading";
-import { Button } from "../../components/UI/UI/Button/Button";
-import { Container } from "../../components/UI/UI/Container/container.style";
-import { Input } from "../../components/UI/UI/Input/InputWord";
+import { Heading } from "../../components/Header/Heading";
+import { Button } from "../../components/UI/Button/Button";
+import { Container } from "../../components/UI/Container/container.style";
+import { Input } from "../../components/UI/Input/InputWord";
 import { StyleForgotPasswordPage } from "./ForgotPasswordPage.style";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";

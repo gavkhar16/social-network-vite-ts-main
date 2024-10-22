@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container } from "../../components/UI/UI/Container/container.style";
-import { Heading } from "../../components/UI/Header/Heading";
-import { Input } from "../../components/UI/UI/Input/InputWord";
-import { Button } from "../../components/UI/UI/Button/Button";
+import { Container } from "../../components/UI/Container/container.style";
+import { Heading } from "../../components/Header/Heading";
+import { Input } from "../../components/UI/Input/InputWord";
+import { Button } from "../../components/UI/Button/Button";
 import { StyleWrongPassword } from "./WrongPassword.style";
 
 export const WrongPassword = () => {

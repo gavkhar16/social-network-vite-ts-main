@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"; 
-import { Heading } from "../../components/UI/Header/Heading";
+import { Heading } from "../../components/Header/Heading";
 import * as yup from "yup";
-import { Linktext } from "../../components/UI/Header/Typography/LinkText/Linktext";
-import { Button } from "../../components/UI/UI/Button/Button";
-import { Container } from "../../components/UI/UI/Container/container.style";
-import { RegistrationInfo } from "../../components/UI/UI/RegistrationInfo/RegistrationInfo";
-import { Input } from "../../components/UI/UI/Input/InputWord";
+import { Linktext } from "../../components/Header/Typography/LinkText/Linktext";
+import { Button } from "../../components/UI/Button/Button";
+import { Container } from "../../components/UI/Container/container.style";
+import { RegistrationInfo } from "../../components/UI/RegistrationInfo/RegistrationInfo";
+import { Input } from "../../components/UI/Input/InputWord";
 import { StyleRegistrationPage } from "./RegistrationPage.style";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
