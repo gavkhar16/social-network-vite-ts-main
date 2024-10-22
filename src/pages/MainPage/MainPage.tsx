@@ -1,7 +1,9 @@
 import { Header } from "../../components/UI/Header/Header";
 import { Container } from "../../components/UI/UI/Container/container.style";
 import "./MainPage.scss";
-import NavbarItem from "../../components/UI/Header/Typography/Navbar/NavbarItem";
+import NavbarItem from "../../components/UI/Aside/Navbar/NavbarItem";
+import { Heading } from "../../components/UI/Header/Heading";
+import { UserElem } from "../../components/UI/Aside/List/UserElem";
 
 export const MainPage = () => {
   const navbarItems = [
@@ -79,6 +81,57 @@ export const MainPage = () => {
     
   ];
 
+  const userElems = [
+    {
+      userElemImg: "./img/profile/profile-img-1.jpeg", 
+      mainText: "N E W", 
+      secondaryText: "Развитие", 
+      badgeCount: 3,
+    },
+    {
+      userElemImg: "./img/profile/profile-img-2.jpeg", 
+      mainText: "Aesthetics", 
+      secondaryText: "Стиль", 
+      badgeCount: 3,
+    },
+    {
+      userElemImg: "./img/profile/profile-img-3.jpeg", 
+      mainText: "дом твоей эстетики", 
+      secondaryText: "Творчество", 
+      badgeCount: 3,
+    },
+    {
+      userElemImg: "./img/profile/profile-img-4.jpeg", 
+      mainText: "wailet", 
+      secondaryText: "Искусство", 
+      badgeCount: 3,
+    },
+    {
+      userElemImg: "./img/profile/profile-img-5.jpeg", 
+      mainText: "A W E S O M E", 
+      secondaryText: "Стиль", 
+      badgeCount: 3,
+    },
+    {
+      userElemImg: "./img/profile/profile-img-6.jpeg", 
+      mainText: "minimalism", 
+      secondaryText: "Фотография", 
+      badgeCount: 3,
+    },
+    {
+      userElemImg: "./img/profile/profile-img-7.jpeg", 
+      mainText: "Словарный запас", 
+      secondaryText: "Литература", 
+      badgeCount: 3,
+    },
+    {
+      userElemImg: "./img/profile/profile-img-8.jpeg", 
+      mainText: "Look", 
+      secondaryText: "Мода", 
+      badgeCount: 3,
+    },
+  ];
+
   return (
     <Container>
       <Header/>
@@ -100,73 +153,17 @@ export const MainPage = () => {
         </nav>
         <div className="List">
           <div className="List__title">
-            <h2>Подписки</h2>
+            <Heading headingText="Подписки" headingType="h2"/>
             <span className="count">123</span>
           </div>
-          <div className="UserElem">
-            <img src="./img/profile/profile-img-1.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">N E W</p>
-              <p className="secondary__text">Развитие</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/profile/profile-img-2.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">Aesthetics</p>
-              <p className="secondary__text">Стиль</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/profile/profile-img-3.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">дом твоей эстетики</p>
-              <p className="secondary__text">Творчество</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/profile/profile-img-4.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">wailet</p>
-              <p className="secondary__text">Искусство</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/profile/profile-img-5.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">A W E S O M E</p>
-              <p className="secondary__text">Стиль</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/profile/profile-img-6.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">minimalism</p>
-              <p className="secondary__text">Фотография</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/profile/profile-img-7.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">Словарный запасE</p>
-              <p className="secondary__text">Литература</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/profile/profile-img-8.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">Look</p>
-              <p className="secondary__text">Мода</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
+          {userElems.map((elem) => (
+            <UserElem
+            userElemImg={elem.userElemImg}
+            mainText={elem.mainText}
+            secondaryText={elem.secondaryText}
+            badgeCount={elem.badgeCount}
+            />
+          ))}
         </div>
       </aside>
       <main className="Main">
