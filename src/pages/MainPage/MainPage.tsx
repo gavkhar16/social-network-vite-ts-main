@@ -19,6 +19,7 @@ import { CommentBlockImg } from "../../components/Main/PostRepost/CommentBlockIm
 import { CommentDescription } from "../../components/Main/PostRepost/CommentDescription";
 import { Span } from "../../components/Main/PostRepost/Span";
 import { RepostSvg } from "../../components/Main/PostRepost/RepostSvg";
+import { MusicElem } from "../../components/Aside/List/MusicElem";
 
 export const MainPage = () => {
   const navbarItems = [
@@ -250,6 +251,60 @@ export const MainPage = () => {
 
     },
 
+  ]
+
+  const rightList = [
+    {
+      userElemImg: "./img/users/aleksandr-maykov.jpeg",
+      mainText: "Александр Майков",
+      secondaryText: "Онлайн",
+      badgeCount: 3
+    },
+    {
+      userElemImg: "./img/users/aleksandr-maykov.jpeg",
+      mainText: "Александр Майков",
+      secondaryText: "Онлайн",
+      badgeCount: 3
+    },
+    {
+      userElemImg: "./img/users/aleksandr-maykov.jpeg",
+      mainText: "Александр Майков",
+      secondaryText: "Онлайн",
+      badgeCount: 3
+    },
+  ]
+
+  const musicBlock = [
+    {
+      musicElemImg: "./img/music/album-1.png",
+      mainText: "Pieces",
+      secondaryText: "Andrew Belle"
+    },
+    {
+      musicElemImg: "./img/music/album-2.png",
+      mainText: "In the Wind",
+      secondaryText: "On-The-Go"
+    },
+    {
+      musicElemImg: "./img/music/album-3.png",
+      mainText: "On you own",
+      secondaryText: "Melt"
+    },
+    {
+      musicElemImg: "./img/music/album-4.png",
+      mainText: "Infinity",
+      secondaryText: "James Young"
+    },
+    {
+      musicElemImg: "./img/music/album-5.png",
+      mainText: "Let me follow",
+      secondaryText: "Son Lux"
+    },
+    {
+      musicElemImg: "./img/music/album-6.png",
+      mainText: "Youth",
+      secondaryText: "Glass Animals"
+    },
   ]
 
   return (
@@ -484,87 +539,30 @@ export const MainPage = () => {
       <aside className="RightSide">
         <div className="List">
           <div className="List__title">
-            <h2>Близкие друзья</h2>
+            <Heading headingText="Близкие друзья" headingType="h2"/>
             <span className="count">123</span>
           </div>
-          <div className="UserElem">
-            <img src="./img/users/aleksandr-maykov.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">Александр Майков</p>
-              <p className="secondary__text _online">Онлайн</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/users/aleksandr-maykov.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">Александр Майков</p>
-              <p className="secondary__text _online">Онлайн</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
-          <div className="UserElem">
-            <img src="./img/users/aleksandr-maykov.jpeg" alt="User" />
-            <div className="user__description">
-              <p className="main__text">Александр Майков</p>
-              <p className="secondary__text _online">Онлайн</p>
-            </div>
-            <span className="Badge">3</span>
-          </div>
+          {rightList.map((elem) => (
+            <UserElem
+            userElemImg={elem.userElemImg}
+            mainText={elem.mainText}
+            secondaryText={elem.secondaryText}
+            badgeCount={elem.badgeCount}
+            />
+          ))}
         </div>
         <div className="MusicBlock">
           <div className="MusicBlock__title">
             <h2>Вы недавно слушали</h2>
             <span>123</span>
           </div>
-          <div className="MusicElem">
-            <img src="./img/music/album-1.png" alt="Album" />
-            <div className="music__description">
-              <p className="main__text">Pieces</p>
-              <p className="secondary__text">Andrew Belle</p>
-            </div>
-            <div className="plus-button _active"></div>
-          </div>
-          <div className="MusicElem">
-            <img src="./img/music/album-2.png" alt="Album" />
-            <div className="music__description">
-              <p className="main__text">In the Wind</p>
-              <p className="secondary__text">On-The-Go</p>
-            </div>
-            <div className="plus-button"></div>
-          </div>
-          <div className="MusicElem">
-            <img src="./img/music/album-3.png" alt="Album" />
-            <div className="music__description">
-              <p className="main__text">On you own</p>
-              <p className="secondary__text">Meltt</p>
-            </div>
-            <div className="plus-button _active"></div>
-          </div>
-          <div className="MusicElem">
-            <img src="./img/music/album-4.png" alt="Album" />
-            <div className="music__description">
-              <p className="main__text">Infinity</p>
-              <p className="secondary__text">James Young</p>
-            </div>
-            <div className="plus-button"></div>
-          </div>
-          <div className="MusicElem">
-            <img src="./img/music/album-5.png" alt="Album" />
-            <div className="music__description">
-              <p className="main__text">Let me follow</p>
-              <p className="secondary__text">Son Lux</p>
-            </div>
-            <div className="plus-button _active"></div>
-          </div>
-          <div className="MusicElem">
-            <img src="./img/music/album-6.png" alt="Album" />
-            <div className="music__description">
-              <p className="main__text">Youth</p>
-              <p className="secondary__text">Glass Animals</p>
-            </div>
-            <div className="plus-button"></div>
-          </div>
+          {musicBlock.map((elem) => (
+            <MusicElem 
+              musicElemImg={elem.musicElemImg}
+              mainText={elem.mainText}
+              secondaryText={elem.secondaryText}
+            />
+          ))} 
         </div>
       </aside>
     </div>
