@@ -305,6 +305,7 @@ export const MainPage = () => {
       mainText: "Youth",
       secondaryText: "Glass Animals"
     },
+    
   ]
   return (
     <Container>
