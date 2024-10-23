@@ -306,7 +306,6 @@ export const MainPage = () => {
       secondaryText: "Glass Animals"
     },
   ]
-
   return (
     <Container>
       <Header/>
