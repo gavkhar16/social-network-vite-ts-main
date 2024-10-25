@@ -287,7 +287,7 @@ export const MainPage = () => {
     },
     {
       musicElemImg: "./img/music/album-3.png",
-      mainText: "On you own",
+      mainText: "On you own", 
       secondaryText: "Melt"
     },
     {

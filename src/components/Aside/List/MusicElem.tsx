@@ -1,4 +1,4 @@
-type TMusicElem = {
+ type TMusicElem = {
     musicElemImg: string;
     mainText: string;
     secondaryText: string;

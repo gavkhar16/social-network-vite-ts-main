@@ -1,8 +1,13 @@
+import { useSelector } from "react-redux";
 import { Header } from "../../components/Header/Header";
 import { Container } from "../../components/UI/Container/container.style";
 import "./ProfilePage.scss";
+import { RootState } from "../../store/store";
 
 export const ProfilePage = () => {
+  // const user = useSelector((state:RootState)=>state.user)
+  // console.log(user);
+  
   return (
    <Container>
       <Header/>
