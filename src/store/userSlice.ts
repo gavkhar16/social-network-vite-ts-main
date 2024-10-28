@@ -5,19 +5,19 @@ export interface IUser {
   phone_number: string;
   user_id: number;
   name: string;
-  reg_data: string;
+  reg_date: string;
   city: string;
 }
 
-interface IUserStateProps {
-  user: null | IUser;
+export interface IUserStateProps {
+  user: null | IUser; // Здесь будет храниться либо пустое значение, либо значения из IUser
 }
 
-const initialState: IUserStateProps = {
+export const initialState: IUserStateProps = {
   user: null,
 };
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: "userSlice",
   initialState,
   reducers: {
@@ -27,5 +27,5 @@ const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
-export const {changeUser} = userSlice.actions;
+export default userSlice.reducer; // Дефолтно экспортируем объект с помощью редюсера
+export const { changeUser } = userSlice.actions; // Деструктуризируем объект на отдельные значения для actions

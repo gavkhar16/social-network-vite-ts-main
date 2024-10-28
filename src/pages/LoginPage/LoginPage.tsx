@@ -6,7 +6,6 @@ import { Button } from "../../components/UI/Button/Button";
 import { Container } from "../../components/UI/Container/container.style";
 import { RegistrationInfo } from "../../components/UI/RegistrationInfo/RegistrationInfo";
 import { Input } from "../../components/UI/Input/InputWord";
-import "./LoginPage.scss";
 import { StyleLoginPage } from "./LogiPage.style";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,15 +13,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { changeUser } from "../../store/userSlice";
 import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
 
 const mockeUser = {
-  mail: "gavkhar@gmail.com",
-  phone_number: "+998902004040",
-  user_id: 1,
-  name: "Gap",
-  reg_data: new Date(),
-  city: "NY",
+  mail: "asdiank7@gmail.com",
+  phone_number: "+998909013281",
+  user_id: 266,
+  name: "Yedixanov Said Jasurovich",
+  reg_date: new Date(),
+  city: "Tashkent",
 };
 
 interface ILoginForm {
@@ -44,9 +42,15 @@ const loginFormScheme = yup.object({
 export const LoginPage = () => {
   const user = useSelector((state: RootState) => state.userSlice.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Перенесено внутрь компонента
+
   console.log(user);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/profile-page");
+    }
+  }, [user, navigate]); // добавляем navigate в зависимости для useEffect
 
   const {
     control,
@@ -60,27 +64,23 @@ export const LoginPage = () => {
     },
   });
 
-  const onLoginSubmit: SubmitHandler<ILoginForm> = () => {
+  const onLoginSubmit: SubmitHandler<ILoginForm> = (data) => {
     dispatch(changeUser(mockeUser));
+    const savedEmail = localStorage.getItem("userEmail");
+    const savedPassword = localStorage.getItem("userPassword");
 
-    useEffect(()=>{
-      
-    })
-    // const savedEmail = localStorage.getItem("userEmail");
-    // const savedPassword = localStorage.getItem("userPassword");
-
-    // if (
-    //   savedEmail &&
-    //   savedPassword &&
-    //   data.userEmail === savedEmail &&
-    //   data.userPassword === savedPassword
-    // ) {
-    //   console.log("Успешный вход");
-    //   navigate("/main-page");
-    // } else {
-    //   console.log("Неверный email или пароль");
-    //   alert("Неверный email или пароль");
-    // }
+    if (
+      savedEmail &&
+      savedPassword &&
+      data.userEmail === savedEmail &&
+      data.userPassword === savedPassword
+    ) {
+      console.log("Успешный вход");
+      navigate("/main-page");
+    } else {
+      console.log("Неверный email или пароль");
+      alert("Неверный email или пароль");
+    }
   };
 
   return (
