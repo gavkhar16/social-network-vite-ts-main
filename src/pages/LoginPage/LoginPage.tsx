@@ -15,10 +15,10 @@ import { changeUser } from "../../store/userSlice";
 import { useEffect } from "react";
 
 const mockeUser = {
-  mail: "asdiank7@gmail.com",
+  mail: "gavhar@gmail.com",
   phone_number: "+998909013281",
   user_id: 266,
-  name: "Yedixanov Said Jasurovich",
+  name: "Gavhar",
   reg_date: new Date(),
   city: "Tashkent",
 };
