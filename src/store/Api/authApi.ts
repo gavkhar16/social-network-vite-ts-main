@@ -1,5 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "../../utils/baseUrl";
+import { IUser } from "../userSlice";
+import { build } from "vite";
+import { number, string } from "yup";
 
 interface IRegistrationUserPayload {
   name: string;
@@ -14,6 +17,24 @@ interface IRegistrationUserResponse {
   user_id: number;
 }
 
+interface ILoginUserPayload {
+  email: string;
+  password: string;
+}
+
+interface IGETUserResponse {
+  status: 1;
+  massage: IUser;
+}
+
+interface IChangeProfilePayload {
+    user_id: number;
+    changeInfo: string;
+    new_data: string;
+
+}
+interface ILoginUserResponse extends IRegistrationUserResponse {}
+
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
@@ -25,7 +46,24 @@ export const authApi = createApi({
         body: payload,
       }),
     }),
+    loginUser: builder.mutation<ILoginUserResponse, ILoginUserPayload>({
+      query: (payload) => ({
+        url: "/login",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    getUser: builder.query<IGETUserResponse, string>({
+      query: (userId) => `/user?user_id=${userId}`,
+    }),
   }),
+  changeUser: builder.mutation<string,IChangeProfilePayload>({
+    query:(payload)=>({
+        url:"/change-profile",
+        method:"PUT",
+        body: payload,
+    })
+  })
 });
 
-export const { useRegisterUserMutation } = authApi;
+export const { useRegisterUserMutation, useLoginUserMutation,useGetUserQuery } = authApi;
