@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { changeUser } from "../../store/userSlice";
 import { useEffect } from "react";
+import { useLoginUserMutation } from "../../store/Api/authApi";
 
 const mockeUser = {
   mail: "gavhar@gmail.com",
@@ -24,16 +25,16 @@ const mockeUser = {
 };
 
 interface ILoginForm {
-  userEmail: string;
-  userPassword: string;
+  useremail: string;
+  userpassword: string;
 }
 
 const loginFormScheme = yup.object({
-  userEmail: yup
+  useremail: yup
     .string()
     .required("Обязательное поле")
     .email("Неверный формат эл почты"),
-  userPassword: yup
+  userpassword: yup
     .string()
     .required("Обязательное поле")
     .min(4, "Пароль должен содержать не менее 4 символов"),
@@ -42,45 +43,33 @@ const loginFormScheme = yup.object({
 export const LoginPage = () => {
   const user = useSelector((state: RootState) => state.userSlice.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Перенесено внутрь компонента
-
+  const navigate = useNavigate();
+  const [loginuser, { data: newData }] = useLoginUserMutation();
   console.log(user);
 
   useEffect(() => {
-    if (user) {
-      navigate("/profile-page");
+    
+    if (newData?.user_id) {
+      console.log(newData);
+      
     }
-  }, [user, navigate]); // добавляем navigate в зависимости для useEffect
+  }, [newData, navigate]);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginForm>({
-    resolver: yupResolver(loginFormScheme),
+    // resolver: yupResolver(loginFormScheme),
     defaultValues: {
-      userEmail: "",
-      userPassword: "",
+      useremail: "",
+      userpassword: "",
     },
   });
 
   const onLoginSubmit: SubmitHandler<ILoginForm> = (data) => {
-    dispatch(changeUser(mockeUser));
-    const savedEmail = localStorage.getItem("userEmail");
-    const savedPassword = localStorage.getItem("userPassword");
-
-    if (
-      savedEmail &&
-      savedPassword &&
-      data.userEmail === savedEmail &&
-      data.userPassword === savedPassword
-    ) {
-      console.log("Успешный вход");
-      navigate("/main-page");
-    } else {
-      console.log("Неверный email или пароль");
-      alert("Неверный email или пароль");
-    }
+    // dispatch(changeUser(mockeUser));
+    loginuser({ email: data.useremail, password: data.userpassword });
   };
 
   return (
@@ -89,27 +78,27 @@ export const LoginPage = () => {
         <Heading headingText="Авторизация" />
         <form onSubmit={handleSubmit(onLoginSubmit)}>
           <Controller
-            name="userEmail"
+            name="useremail"
             control={control}
             render={({ field }) => (
               <Input
                 type="text"
                 placeholder="Электронная почта"
-                errorText={errors.userEmail?.message}
-                isError={!!errors.userEmail}
+                errorText={errors.useremail?.message}
+                isError={!!errors.useremail}
                 {...field}
               />
             )}
           />
           <Controller
-            name="userPassword"
+            name="userpassword"
             control={control}
             render={({ field }) => (
               <Input
                 type="password"
                 placeholder="Введите пароль"
-                errorText={errors.userPassword?.message}
-                isError={!!errors.userPassword}
+                errorText={errors.userpassword?.message}
+                isError={!!errors.userpassword}
                 {...field}
               />
             )}

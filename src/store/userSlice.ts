@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface IUser {
   mail: string;
@@ -9,8 +9,10 @@ export interface IUser {
   city: string;
 }
 
+export interface IChangeUserPayload extends IUser {}
+
 export interface IUserStateProps {
-  user: null | IUser; // Здесь будет храниться либо пустое значение, либо значения из IUser
+  user: null | IUser; 
 }
 
 export const initialState: IUserStateProps = {
@@ -21,11 +23,11 @@ export const userSlice = createSlice({
   name: "userSlice",
   initialState,
   reducers: {
-    changeUser(state, action) {
+    changeUser(state, action: PayloadAction<IChangeUserPayload>) {
       state.user = action.payload;
     },
   },
 });
 
-export default userSlice.reducer; // Дефолтно экспортируем объект с помощью редюсера
-export const { changeUser } = userSlice.actions; // Деструктуризируем объект на отдельные значения для actions
+export default userSlice.reducer; 
+export const { changeUser } = userSlice.actions;

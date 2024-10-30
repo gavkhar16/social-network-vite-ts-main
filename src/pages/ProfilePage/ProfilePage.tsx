@@ -466,11 +466,9 @@ export const ProfilePage = () => {
                 userAlt="Denis Frolov"
               />
               <div className="user__description">
-                <Heading
-                  headingText="Денис Фролов"
-                  headingType="h1"
-                  className="user__name"
-                />
+                <h1 className="user_name">
+                  {user?.name}
+                </h1>
                 <div className="user__info">
                   {userInfo.map((elem) => (
                     <UserParameter
