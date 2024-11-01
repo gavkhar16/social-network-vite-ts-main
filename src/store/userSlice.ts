@@ -9,10 +9,13 @@ export interface IUser {
   city: string;
 }
 
-export interface IChangeUserPayload extends IUser {}
+export interface IChangeUserPayload extends IUser {
+  useremail: string;
+  userpassword: string;
+}
 
 export interface IUserStateProps {
-  user: null | IUser; 
+  user: null | IChangeUserPayload;
 }
 
 export const initialState: IUserStateProps = {
@@ -29,5 +32,5 @@ export const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer; 
+export default userSlice.reducer;
 export const { changeUser } = userSlice.actions;

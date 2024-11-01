@@ -5,7 +5,7 @@ import { build } from "vite";
 import { number, string } from "yup";
 
 interface IRegistrationUserPayload {
-  name: string; 
+  name: string;
   email: string;
   phone_number: string;
   password: string;
@@ -18,8 +18,8 @@ interface IRegistrationUserResponse {
 }
 
 interface ILoginUserPayload {
-  email: string;
-  password: string;
+  email: string | undefined;
+  password: string | undefined;
 }
 
 interface IGETUserResponse {
@@ -28,18 +28,17 @@ interface IGETUserResponse {
 }
 
 interface IChangeProfilePayload {
-    user_id: number;
-    change_Info: string;
-    new_data: string;
-
+  user_id: number;
+  change_Info: string;
+  new_data: string;
 }
-interface ILoginUserResponse extends IRegistrationUserResponse  {}
+interface ILoginUserResponse extends IRegistrationUserResponse {}
 
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   endpoints: (builder) => ({
-    registerUser: builder.mutation<IRegistrationUserResponse, IRegistrationUserPayload>({
+    registerUser: builder.mutation<IRegistrationUserResponse,IRegistrationUserPayload>({
       query: (payload) => ({
         url: "/registration",
         method: "POST",
@@ -66,4 +65,8 @@ export const authApi = createApi({
   }),
 });
 
-export const { useRegisterUserMutation, useLoginUserMutation, useGetUserQuery } = authApi;
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useGetUserQuery,
+} = authApi;

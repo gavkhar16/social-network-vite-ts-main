@@ -11,18 +11,10 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { changeUser } from "../../store/userSlice";
 import { useEffect } from "react";
 import { useLoginUserMutation } from "../../store/Api/authApi";
 
-const mockeUser = {
-  mail: "gavhar@gmail.com",
-  phone_number: "+998909013281",
-  user_id: 266,
-  name: "Gavhar",
-  reg_date: new Date(),
-  city: "Tashkent",
-};
+
 
 interface ILoginForm {
   useremail: string;
@@ -42,16 +34,13 @@ const loginFormScheme = yup.object({
 
 export const LoginPage = () => {
   const user = useSelector((state: RootState) => state.userSlice.user);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loginuser, { data: newData }] = useLoginUserMutation();
+  const [loginUser, { data: newData }] = useLoginUserMutation();
   console.log(user);
 
   useEffect(() => {
-    
     if (newData?.user_id) {
       console.log(newData);
-      
     }
   }, [newData, navigate]);
 
@@ -68,8 +57,7 @@ export const LoginPage = () => {
   });
 
   const onLoginSubmit: SubmitHandler<ILoginForm> = (data) => {
-    // dispatch(changeUser(mockeUser));
-    loginuser({ email: data.useremail, password: data.userpassword });
+    loginUser({ email: data.useremail, password: data.userpassword });
   };
 
   return (
@@ -103,7 +91,7 @@ export const LoginPage = () => {
               />
             )}
           />
-          <Button isPrimary buttonText="Войти" />
+          <Button $isPrimary buttonText="Войти" />
         </form>
         <Linktext
           linkText="Забыли пароль?"
