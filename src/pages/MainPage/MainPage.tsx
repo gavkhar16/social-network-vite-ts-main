@@ -21,8 +21,12 @@ import { Span } from "../../components/Main/PostRepost/Span";
 import { RepostSvg } from "../../components/Main/PostRepost/RepostSvg";
 import { MusicElem } from "../../components/Aside/List/MusicElem";
 import { CommentBlockSvg } from "../../components/Main/PostRepost/CommentBlockSvg";
+import { PostItem } from "../../components/Main/PostItem/PostItem";
+import { useGetPostQuery } from "../../store/Api/postApi";
 
 export const MainPage = () => {
+  const { data } = useGetPostQuery(null);
+
   const navbarItems = [
     {
       iconClass: "icon-profile",
@@ -395,43 +399,22 @@ export const MainPage = () => {
               ))}
             </div>
           </div>
-          <div className="Post _liked _marked">
-            <PostUserElem
-              userElemImg="./img/users/aleksandr-maykov.jpeg"
-              mainText="Александр Майков"
-              secondaryText="Сегодня в 9:37"
-            />
-            <PostText postText="Момент умиротворения и спокойствия" />
-            <div className="media-container">
-              {mediaContainer.map((elem) => (
-                <PostMediaItem imgPost={elem.imgPost} />
-              ))}
-            </div>
-            <div className="PostControls">
-              {postControls.map((elem) => (
-                <PostIconWrapper
-                  iconWrap={elem.iconWrap}
-                  whatCount={elem.whatCount}
-                  count={elem.count}
-                  className={elem.className}
-                  viewBox={elem.viewBox}
-                  pathData={elem.pathData}
-                  color={elem.fill}
-                />
-              ))}
-            </div>
-            <div className="CommentBlock">
-              <CommentBlockImg />
-              <CommentDescription
-                owner="Карина Савина"
-                text="Это текст комментария"
-                reply="Ответить"
+
+          <PostItem
+            isLiked
+            isMarked
+            postText="nm,m"
+            userName="jbkkh"
+            regDate="lijlkj"
+          />
+          {data?.message.length &&
+            data.message.map((elem) => (
+              <PostItem
+                postText={elem.main_text}
+                regDate={elem.reg_date}
+                userName={elem.user_fk.name}
               />
-              <Span />
-              <CommentBlockSvg />
-            </div>
-            <RepostSvg className="icon-more" />
-          </div>
+            ))}
           <div className="Post Repost _liked _marked">
             <PostUserElem
               userElemImg="./img/users/mark-krahmalev.jpeg"
