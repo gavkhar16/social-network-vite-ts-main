@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { StylePost } from "./PostItem.style";
+import { PostSetting } from "./PostSetting";
 
 interface IPostProps {
-  userName: string;
-  regDate: string;
-  postText: string;
+  userName?: string;
+  regDate?: string;
+  postText?: string;
   isLiked?: boolean;
   isMarked?: boolean;
 }
@@ -15,6 +17,7 @@ export const PostItem = ({
   isLiked,
   isMarked,
 }: IPostProps) => {
+   const [isSettingOpen, setIsSettingOpen] = useState(false);
   return (
     <StylePost $isLiked={isLiked} $isMarked={isMarked}>
       <div className="Post ">
@@ -141,6 +144,7 @@ export const PostItem = ({
           className="icon icon-more"
           viewBox="0 0 25 5"
           xmlns="http://www.w3.org/2000/svg"
+          onClick={()=>setIsSettingOpen(!isSettingOpen)}
         >
           <g id="more">
             <circle id="ellipse" cx="22.5" cy="2.5" r="2.5" />
@@ -149,6 +153,7 @@ export const PostItem = ({
           </g>
         </svg>
       </div>
+      {isSettingOpen && <PostSetting/>}
     </StylePost>
   );
 };

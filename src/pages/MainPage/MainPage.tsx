@@ -22,10 +22,10 @@ import { RepostSvg } from "../../components/Main/PostRepost/RepostSvg";
 import { MusicElem } from "../../components/Aside/List/MusicElem";
 import { CommentBlockSvg } from "../../components/Main/PostRepost/CommentBlockSvg";
 import { PostItem } from "../../components/Main/PostItem/PostItem";
-import { useGetPostQuery } from "../../store/Api/postApi";
+import { useGetPostListQuery } from "../../store/Api/postApi";
 
 export const MainPage = () => {
-  const { data } = useGetPostQuery(null);
+  const { data } = useGetPostListQuery(null);
 
   const navbarItems = [
     {

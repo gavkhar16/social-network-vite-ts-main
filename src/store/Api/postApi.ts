@@ -18,19 +18,19 @@ interface IPost {
   photos: string[];
   comments: string[];
 }
-interface IGetPostResponse {
+interface IGetPostListResponse {
   status: number;
   message: IPost[];
 }
 
-interface INewPostPayload {
-  user_id: number;
-  main_text: string;
-}
+// interface INewPostPayload {
+//   user_id: number;
+//   main_text: string;
+// }
 
-interface INewPostResponse {
-  user_id: number;
-  main_text: string;
+interface IGetPostByIdResponse {
+  status: number;
+  message: IPost;
 }
 
 interface IChangeUserPostPayload {
@@ -47,24 +47,13 @@ export const postApi = createApi({
   reducerPath: "postApi",
   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   endpoints: (builder) => ({
-    getPost: builder.query<IGetPostResponse, null>({
+    getPostList: builder.query<IGetPostListResponse, null>({
       query: () => `/posts`,
     }),
-    newPostUser: builder.mutation<INewPostResponse, INewPostPayload>({
-      query: (payload) => ({
-        url: "/post",
-        method: "POST",
-        body: payload,
-      }),
+    getPostListById: builder.query<IGetPostByIdResponse, string>({
+      query: (postId) => `post?post_id=${postId}`, 
     }),
-    changeUserPost: builder.mutation<
-      IChangeProfileResponse,IChangeUserPostPayload>({
-      query: (payload) => ({
-        url: "/post",
-        method: "PUT",
-        body: payload,
-      }),
-    }),
+
     // deletePost: builder.mutation<>({
     //   query: (postId) =>
     //     `/user?post_id=${postId}`({
@@ -76,8 +65,4 @@ export const postApi = createApi({
   }),
 });
 
-export const {
-  useNewPostUserMutation,
-  useChangeUserPostMutation,
-  useGetPostQuery, useLazyGetPostQuery
-} = postApi;
+export const { useGetPostListQuery, useLazyGetPostListByIdQuery } = postApi;
