@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Input } from "../UI/Input/InputWord";
 import "./Header.scss";
+import { AddNewPost } from "../../pages/PostPage/AddNewPost";
 
 export const Header = () => {
+  const [isOpenModal, setIsOpenModal]=useState(false)
   return (
     <header className="Header">
       <div className="Header__logo">
@@ -68,6 +71,22 @@ export const Header = () => {
         <Input type="search" id="search" name="search" placeholder="Поиск" />
       </div>
       <div className="profile-wrapper">
+      <svg
+          id="_Слой_2"
+          data-name="Слой 2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 14 14"
+          className="icon icon-bell"
+          onClick={()=>{setIsOpenModal(true)}}
+        >
+          <g id="_Слой_1-2" data-name="Слой 1">
+            <path
+              className="cls-1 icon icon-bell"
+              d="M13,8h-5v5c0,.27-.11,.52-.29,.71-.19,.19-.44,.29-.71,.29s-.52-.11-.71-.29c-.19-.19-.29-.44-.29-.71v-5H1c-.27,0-.52-.11-.71-.29-.19-.19-.29-.44-.29-.71s.11-.52,.29-.71c.19-.19,.44-.29,.71-.29H6V1c0-.27,.11-.52,.29-.71,.19-.19,.44-.29,.71-.29s.52,.11,.71,.29c.19,.19,.29,.44,.29,.71V6h5c.27,0,.52,.11,.71,.29,.19,.19,.29,.44,.29,.71s-.11,.52-.29,.71c-.19,.19-.44,.29-.71,.29Z"
+            />
+          </g>
+        </svg>
+
         <svg
           className="icon icon-bell"
           viewBox="0 0 23 26"
@@ -94,6 +113,7 @@ export const Header = () => {
           />
         </svg>
       </div>
+      <AddNewPost openModal={isOpenModal}/>
     </header>
   );
 };

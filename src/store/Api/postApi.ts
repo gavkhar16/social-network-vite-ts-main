@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "../../utils/baseUrl";
 
-interface IPost {
+ export interface IPost {
   main_text: string;
   user_id: number;
   id: number;
@@ -23,22 +23,27 @@ interface IGetPostListResponse {
   message: IPost[];
 }
 
-// interface INewPostPayload {
-//   user_id: number;
-//   main_text: string;
-// }
-
 interface IGetPostByIdResponse {
   status: number;
   message: IPost;
 }
 
-interface IChangeUserPostPayload {
+interface IAddPostPayload {
+  user_id: number;
+  main_text: string;
+}
+
+interface IAddPostResponse {
+  status: number;
+  post_id: string;
+}
+
+interface IEditPostPayload {
   post_id: number;
   new_text: string;
 }
 
-interface IChangeProfileResponse {
+interface IEditPostResponse {
   status: number;
   message: string;
 }
@@ -51,18 +56,30 @@ export const postApi = createApi({
       query: () => `/posts`,
     }),
     getPostListById: builder.query<IGetPostByIdResponse, string>({
-      query: (postId) => `post?post_id=${postId}`, 
+      query: (postId) => `post?post_id=${postId}`,
     }),
-
-    // deletePost: builder.mutation<>({
-    //   query: (postId) =>
-    //     `/user?post_id=${postId}`({
-    //       url: "/post",
-    //       method: "DELETE",
-    //       body: payload,
-    //     }),
+    addNewPost: builder.mutation<IAddPostResponse, IAddPostPayload>({
+      query: (payload) => ({
+        url: "/post",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    editPost: builder.mutation<IEditPostResponse, IEditPostPayload>({
+      query: (payload) => ({
+        url: "/post",
+        method: "PUT",
+        body: payload,
+      }),
+    }),
+    // : builder.mutation<IEditPostResponse, IEditPostPayload>({
+    //   query: (payload) => ({
+    //     url: "/post",
+    //     method: "PUT",
+    //     body: payload,
+    //   }),
     // }),
   }),
 });
 
-export const { useGetPostListQuery, useLazyGetPostListByIdQuery } = postApi;
+export const { useGetPostListQuery, useLazyGetPostListByIdQuery, useAddNewPostMutation, useEditPostMutation } = postApi;

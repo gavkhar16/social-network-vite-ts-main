@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   $isPrimary?: boolean;
   buttonText: string;
 }
@@ -13,6 +13,8 @@ const StyledButton = styled.button<{ $isPrimary?: boolean }>`
   cursor: pointer;
 `;
 
-export const Button: React.FC<ButtonProps> = ({ $isPrimary, buttonText }) => (
-  <StyledButton $isPrimary={$isPrimary}>{buttonText}</StyledButton>
+export const Button: React.FC<ButtonProps> = ({ $isPrimary, buttonText, ...props }) => (
+  <StyledButton $isPrimary={$isPrimary} {...props}>
+    {buttonText}
+  </StyledButton>
 );
